@@ -1,0 +1,6 @@
+[MarsRoverApplication.main()] INFO  MarsRoverApplication  - Mars Rover Application will work from initial x coordinate4 for y coordinate 2 for Direction East
+[MarsRoverApplication.main()] INFO  MarsRoverApplication  -  Commands executed for the mars rover is FLFFFRFLB
+[MarsRoverApplication.main()] INFO  service.MarsRoverService  - (6,4) North
+[MarsRoverApplication.main()] INFO  MarsRoverApplication  - Mars Rover Application will work from initial x coordinate4 for y coordinate 2 for Direction East
+[MarsRoverApplication.main()] INFO  MarsRoverApplication  -  Commands executed for the mars rover is FLFFFRFLB
+[MarsRoverApplication.main()] INFO  service.MarsRoverService  - (6,4) North

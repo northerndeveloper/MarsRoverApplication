@@ -1,6 +1,6 @@
 package contant;
 
-public final class DirectionContants {
+public final class DirectionConstants {
 
     public static final int North = 1;
     public static final int East = 2;

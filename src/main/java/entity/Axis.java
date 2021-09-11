@@ -1,6 +1,6 @@
 package entity;
 
-import contant.DirectionContants;
+import contant.DirectionConstants;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,5 +9,5 @@ import lombok.Data;
 public class Axis {
 
     private int xAxis, yAxis = 0;
-    private int currentMovingDirection = DirectionContants.North;
+    private int currentMovingDirection = DirectionConstants.North;
 }
