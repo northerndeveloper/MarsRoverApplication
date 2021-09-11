@@ -1,6 +1,9 @@
+import contant.DirectionContants;
+import entity.Axis;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import service.MarsRoverService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +13,8 @@ public class MarsRoverApplicationTest {
     public static final int East = 2;
     public static final int South = 3;
     public static final int West = 4;
-    private MarsRoverApplication marsRoverApplication = new MarsRoverApplication();
+    private MarsRoverService marsRoverService = new MarsRoverService();
+    private Axis axis;
 
 
     @BeforeClass
@@ -19,81 +23,73 @@ public class MarsRoverApplicationTest {
     }
 
     @Before
-    public void setUp()  {
-        marsRoverApplication.yAxis = 0;
-        marsRoverApplication.xAxis = 0;
-        marsRoverApplication.currentMovingDirection = North;
+    public void setUp() {
+        axis = new Axis(0, 0, DirectionContants.North);
     }
 
     @Test
     public void testMoveBackward() {
 
-        marsRoverApplication.yAxis = 2;
-        marsRoverApplication.xAxis = 2;
+        axis = new Axis(2, 2, 1);
+        marsRoverService.moveBackward(axis);
+        assertEquals(1, axis.getYAxis());
 
-        marsRoverApplication.currentMovingDirection = 1;
-        marsRoverApplication.moveBackward();
-        assertEquals(1, marsRoverApplication.yAxis);
+        axis.setCurrentMovingDirection(2);
+        marsRoverService.moveBackward(axis);
+        assertEquals(1, axis.getXAxis());
 
-        marsRoverApplication.currentMovingDirection = 2;
-        marsRoverApplication.moveBackward();
-        assertEquals(1, marsRoverApplication.xAxis);
+        axis.setCurrentMovingDirection(3);
+        marsRoverService.moveBackward(axis);
+        assertEquals(2, axis.getYAxis());
 
-        marsRoverApplication.currentMovingDirection = 3;
-        marsRoverApplication.moveBackward();
-        assertEquals(2, marsRoverApplication.yAxis);
-
-        marsRoverApplication.currentMovingDirection = 4;
-        marsRoverApplication.moveBackward();
-        assertEquals(2, marsRoverApplication.xAxis);
+        axis.setCurrentMovingDirection(4);
+        marsRoverService.moveBackward(axis);
+        assertEquals(2, axis.getXAxis());
     }
 
     @Test
     public void testMoveForward() {
 
-        marsRoverApplication.yAxis = 3;
-        marsRoverApplication.xAxis = 3;
+        axis = new Axis(3, 3, 1);
+        marsRoverService.moveForward(axis);
+        assertEquals(4, axis.getYAxis());
 
-        marsRoverApplication.currentMovingDirection = 1;
-        marsRoverApplication.moveForward();
-        assertEquals(4, marsRoverApplication.yAxis);
+        axis.setCurrentMovingDirection(2);
+        marsRoverService.moveForward(axis);
+        assertEquals(4, axis.getXAxis());
 
-        marsRoverApplication.currentMovingDirection = 2;
-        marsRoverApplication.moveForward();
-        assertEquals(4, marsRoverApplication.xAxis);
+        axis.setCurrentMovingDirection(3);
+        marsRoverService.moveForward(axis);
+        assertEquals(3, axis.getYAxis());
 
-        marsRoverApplication.currentMovingDirection = 3;
-        marsRoverApplication.moveForward();
-        assertEquals(3, marsRoverApplication.yAxis);
-
-        marsRoverApplication.currentMovingDirection = 4;
-        marsRoverApplication.moveForward();
-        assertEquals(3, marsRoverApplication.xAxis);
+        axis.setCurrentMovingDirection(4);
+        marsRoverService.moveForward(axis);
+        assertEquals(3, axis.getXAxis());
     }
 
     @Test
     public void testTurnLeft() {
 
-        marsRoverApplication.turnLeft();
-        assertEquals(West, marsRoverApplication.currentMovingDirection);
+        marsRoverService.turnLeft(axis);
+        assertEquals(West, axis.getCurrentMovingDirection());
     }
 
     @Test
     public void testTurnRight() {
 
-        marsRoverApplication.currentMovingDirection = 4;
-        marsRoverApplication.turnRight();
-        assertEquals(North, marsRoverApplication.currentMovingDirection);
+        axis.setCurrentMovingDirection(4);
+        marsRoverService.turnRight(axis);
+        assertEquals(North, axis.getCurrentMovingDirection());
     }
 
     @Test
     public void testProcess() {
 
-        marsRoverApplication.currentMovingDirection = 3;
-        marsRoverApplication.processSingleCommand('L');
-        assertEquals(East, marsRoverApplication.currentMovingDirection);
+        axis.setCurrentMovingDirection(3);
+        marsRoverService.processSingleCommand('L', axis);
+        assertEquals(East, axis.getCurrentMovingDirection());
 
-        marsRoverApplication.processSingleCommand('R');
-        assertEquals(South, marsRoverApplication.currentMovingDirection);
+        marsRoverService.processSingleCommand('R', axis);
+        assertEquals(South, axis.getCurrentMovingDirection());
     }
 }
